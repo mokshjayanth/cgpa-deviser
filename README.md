@@ -1,2 +1,2 @@
-# cgpa-devisor
+# cgpa-deviser
 Java Project to devise a study plan.
