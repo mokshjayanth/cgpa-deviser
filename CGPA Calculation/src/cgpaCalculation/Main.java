@@ -22,7 +22,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
+        /*Scanner s = new Scanner(System.in);
         System.out.println("ENTER THE NUMBER OF SUBJECTS FOR THIS SEMESTER BELOW:");
         Integer numOfSub = s.nextInt();
         StudentMarksContainer m1 = new StudentMarksContainer(numOfSub);
@@ -53,6 +53,11 @@ public class Main {
         System.out.println(g);
         gp = c1.AssignGradePoints(g);
         System.out.println(gp);
+*/
+        DataContainer d = new DataContainer();
+        d.initializeData();
+        System.out.println(d.sem2);
+        System.out.println(d.sem3);
 
 
     }
