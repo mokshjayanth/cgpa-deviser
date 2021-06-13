@@ -1,16 +1,16 @@
 package cgpaCalculation;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class DataContainer {
-    HashMap <String, Integer> sem1 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem2 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem3 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem4 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem5 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem6 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem7 = new HashMap<String, Integer>();
-    HashMap <String, Integer> sem8 = new HashMap<String, Integer>();
+    LinkedHashMap<String, Integer> sem1 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem2 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem3 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem4 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem5 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem6 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem7 = new LinkedHashMap<String, Integer>();
+    LinkedHashMap <String, Integer> sem8 = new LinkedHashMap<String, Integer>();
     public void initializeData(){
 
         // 1st Semester Credits Data
