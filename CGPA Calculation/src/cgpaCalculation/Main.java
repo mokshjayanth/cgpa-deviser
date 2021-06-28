@@ -80,7 +80,94 @@ public class Main {
 
 
 
+        
+/*RECOMMENDATIONS*/
+
+
+   Scanner in = new Scanner(System.in);
+   roundoff r=new roundoff();
+   int c_sem,l_sem,flag=0;
+   float c_sgpa,t_sgpa,p_sgpa,prevsum=0;
+   System.out.println("which sem : ");
+   c_sem=in.nextInt();
+   l_sem = 8-c_sem;
+   float prev_sem;
+   /*for(int i=0;i<c_sem-1;i++){
+   System.out.println("enter sem-"+(i+1)+" sgpa : ");
+   prev_sem[i]=in.nextFloat();
+   }*/
+   System.out.println("enter last cgpa : ");
+   prev_sem=in.nextFloat();
+   prev_sem=r.round(prev_sem);
+   if(prev_sem==0.0f) System.exit(0);
+   System.out.println("round : "+prev_sem);
+   c_sgpa=r.round(S.sgpa);
+   System.out.println("round : "+c_sgpa);
+   System.out.println("enter target sgpa : ");
+   t_sgpa=in.nextFloat();
+   
+   prevsum=prev_sem*(c_sem-1);
+   prevsum+=c_sgpa;
+   p_sgpa=((t_sgpa*8)-prevsum);
+        
+        //System.out.println("p_sgpa\n"+p_sgpa);
+        
+        
+        ArrayList<Float> numbers = new ArrayList<Float>(Arrays.asList(5.0f,5.5f,6.0f,6.5f,7.0f,7.5f,8.0f,8.5f,9.0f,9.5f,10.0f));
+        LinkedHashSet<Float> targets = new LinkedHashSet<Float>() {{
+            add(p_sgpa);
+        }};
+   
+        System.out.println("## the devised plans");
+        for (Float target: targets) {
+            Combinations combinations = new Combinations(numbers, target, true);
+            combinations.calculateCombinations();
+            int count=0;
+            for (String solution: combinations.getCombinations()) {
+            //System.out.println(solution);
+                int l=solution.length();
+      ArrayList<String> arr_new = new ArrayList<String>();
+      float arr_new_sum=0.0f;
+      char m,n;
+      for(int x=0;x<l;x=x+3){
+      m=solution.charAt(x);
+      n=solution.charAt(x+1);
+      if(m=='1' && n=='0'){
+      arr_new.add("10.0");
+      x++;
+      }
+      else{
+      String word= new String();
+      //for(int i=0;i<charList.size();i=i+3){
+      for(int j=x;j<x+3;j++){
+      word= word+ solution.charAt(j);}
+      arr_new.add(word);
+      }
+      }
+      //System.out.print(arr_new);
+      for(int z=0;z<arr_new.size();z++){arr_new_sum=arr_new_sum + (Float.valueOf(arr_new.get(z)));}
+      //System.out.println("arr_new_sum : "+arr_new_sum);
+      if((arr_new.size() == l_sem) && (arr_new_sum == p_sgpa)){
+      flag++;
+      System.out.println("\nplan "+(++count)+" -> ");
+      int sem=c_sem;
+      for(int pos=0;pos<arr_new.size();pos++){
+      System.out.print("sem "+(++sem)+": "+arr_new.get(pos)+"\n");}
+      }
+      else if((arr_new.size()==0) || (arr_new.size()>l_sem)){flag=0;}
+      }
+      }
+      if(flag==0){System.out.println("Impossible !!");}
+
+       /* System.out.println("## each element can appear only once");
+        for (Integer target: targets) {
+            Combinations combinations = new Combinations(numbers, target, false);
+            combinations.calculateCombinations();
+            for (String solution: combinations.getCombinations()) {
+                System.out.println(solution);
+            }
+        }*/
+    }
 
     }
-}
 
