@@ -72,7 +72,7 @@ public class DataContainer {
         sem6.put("Multi-disciplinary Project", 2);
         sem6.put("Seminar Based on Summer/Winter Internship", 1);
         sem6.put("Software Architecture and Design Patterns\nSocial Network Analysis\nBig Data Analytics\n Pattern Recognition", 3);
-        sem6.put("Mobile Computing and 5G Technologies\nNatural Language Processing\nDeep Learning\nDigital Iamge Processing", 3);
+        sem6.put("Mobile Computing and 5G Technologies\nNatural Language Processing\nDeep Learning\nDigital Image Processing", 3);
         sem6.put("Data Structures and Algorithms\nRobot Process Automation Design and Development", 3);
 
         // 7th Semester Credits Data

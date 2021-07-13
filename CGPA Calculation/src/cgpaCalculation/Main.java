@@ -1,9 +1,6 @@
 package cgpaCalculation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     //public static String CHOICE_CIE;
@@ -22,11 +19,19 @@ public class Main {
                 String sName = subjectKeys.get(j);              //Get the name of the subject by index
                 char[] charName = sName.toCharArray();          //Convert String to char Array
 
-                for (Integer i =0;i<spaceWidth;i++){
-                    if(i<=(sName.length()-1)){
-                        System.out.print(charName[i]);
+                int index=0;
+                for (int i =0;i<spaceWidth;i++){
+                    if(index<=(sName.length()-1)){
+                        System.out.print(charName[index]);
+
+                        if(i<=(sName.length()-1)) {
+                            if (charName[index] == '\n') i = -1;
+                        }
+                        index++;
                     }
                     else System.out.print(" ");
+
+
                 }
                 System.out.print("|");
             }
@@ -77,33 +82,29 @@ public class Main {
         System.out.println("SEMESTER END GRADE POINT AVERAGE (SGPA): "+ S.sgpa);
 
 
-
-
-
         
 /*RECOMMENDATIONS*/
-
-
+        System.out.println("-----S.G.P.A RECOMMENDATIONS-----\n");
+        System.out.println("------YOU JUST HAVE TO ENTER YOUR PREVIOUS SEMESTER C.G.P.A AND YOUR TARGET C.G.P.A. THE PROGRAM RECOMMENDS SEVERAL PLANS TO ACHIEVE YOUR TARGET C.G.P.A.------\n ");
    Scanner in = new Scanner(System.in);
    roundoff r=new roundoff();
    int c_sem,l_sem,flag=0;
    float c_sgpa,t_sgpa,p_sgpa,prevsum=0;
-   System.out.println("which sem : ");
-   c_sem=in.nextInt();
+   c_sem= semester;
    l_sem = 8-c_sem;
    float prev_sem;
    /*for(int i=0;i<c_sem-1;i++){
    System.out.println("enter sem-"+(i+1)+" sgpa : ");
    prev_sem[i]=in.nextFloat();
    }*/
-   System.out.println("enter last cgpa : ");
+   System.out.println("ENTER YOUR SEMESTER "+(semester-1)+" C.G.P.A : ");
    prev_sem=in.nextFloat();
    prev_sem=r.round(prev_sem);
    if(prev_sem==0.0f) System.exit(0);
-   System.out.println("round : "+prev_sem);
+   //System.out.println("SEMESTER "+(semester-1)+" C.G.P.A : "+prev_sem);
    c_sgpa=r.round(S.sgpa);
-   System.out.println("round : "+c_sgpa);
-   System.out.println("enter target sgpa : ");
+   System.out.println("SEMESTER "+(semester)+" C.G.P.A : "+c_sgpa);
+   //System.out.println("ENTER YOUR TARGET C.G.P.A : ");
    t_sgpa=in.nextFloat();
    
    prevsum=prev_sem*(c_sem-1);
@@ -118,7 +119,7 @@ public class Main {
             add(p_sgpa);
         }};
    
-        System.out.println("## the devised plans");
+        System.out.println("## THE DEVISED PLANS");
         for (Float target: targets) {
             Combinations combinations = new Combinations(numbers, target, true);
             combinations.calculateCombinations();
@@ -149,15 +150,15 @@ public class Main {
       //System.out.println("arr_new_sum : "+arr_new_sum);
       if((arr_new.size() == l_sem) && (arr_new_sum == p_sgpa)){
       flag++;
-      System.out.println("\nplan "+(++count)+" -> ");
+      System.out.println("\nPLAN "+(++count)+" -> ");
       int sem=c_sem;
       for(int pos=0;pos<arr_new.size();pos++){
-      System.out.print("sem "+(++sem)+": "+arr_new.get(pos)+"\n");}
+      System.out.print("SEMESTER "+(++sem)+": "+arr_new.get(pos)+"\n");}
       }
       else if((arr_new.size()==0) || (arr_new.size()>l_sem)){flag=0;}
       }
       }
-      if(flag==0){System.out.println("Impossible !!");}
+      if(flag==0){System.out.println("SORRY, THERE ARE NO POSSIBLE PLANS TO ACHIEVE "+t_sgpa+" C.G.P.A :(");}
 
        /* System.out.println("## each element can appear only once");
         for (Integer target: targets) {
