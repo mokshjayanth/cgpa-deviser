@@ -1,6 +1,7 @@
 package cgpaCalculation;
 
 import java.util.*;
+import java.io.*;
 
 public class Main {
     //public static String CHOICE_CIE;
@@ -45,10 +46,14 @@ public class Main {
         System.out.println("\n");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws FileNotFoundException {
         DataContainer D = new DataContainer();
         D.initializeData();
         Scanner s = new Scanner(System.in);
+        System.out.println("ENTER YOUR NAME:");
+        String name=s.nextLine();
+        System.out.println("ENTER YOUR USN:");
+        String usn=s.nextLine();
         System.out.println("ENTER YOUR CURRENT SEMESTER:");
         Integer semester = s.nextInt();
         StudentMarksContainer S = new StudentMarksContainer(semester);
@@ -74,14 +79,33 @@ public class Main {
         S.gradePoints = c1.AssignGradePoints(S);
         S.sgpa = c1.calculate(S);
 
+        PrintStream printStream = new PrintStream("ConsoleOutputFile.txt");
+        System.setOut(printStream);
+        
+        System.out.println("\nName : "+name);
+        System.out.println("USN : "+usn);
 
-        System.out.println("---CIE MARKS---");
+        System.out.println("\n\n---CIE MARKS---");
         display(S.CIEMarks,S.numOfSub, 1, S, 60);
         System.out.println("---SEE MARKS---");
         display(S.SEEMarks, S.numOfSub, 1, S, 60);
         System.out.println("SEMESTER END GRADE POINT AVERAGE (SGPA): "+ S.sgpa);
 
 
+        
+        PrintStream consoleStream = new PrintStream(new FileOutputStream(FileDescriptor.out));
+        System.setOut(consoleStream);
+
+        File myObj = new File("ConsoleOutputFile.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        System.out.println(data);
+      }
+      myReader.close();
+
+        
+        
         
 /*RECOMMENDATIONS*/
         System.out.println("-----S.G.P.A RECOMMENDATIONS-----\n");
@@ -104,7 +128,7 @@ public class Main {
    //System.out.println("SEMESTER "+(semester-1)+" C.G.P.A : "+prev_sem);
    c_sgpa=r.round(S.sgpa);
    System.out.println("SEMESTER "+(semester)+" C.G.P.A : "+c_sgpa);
-   //System.out.println("ENTER YOUR TARGET C.G.P.A : ");
+   System.out.println("ENTER YOUR TARGET C.G.P.A : ");
    t_sgpa=in.nextFloat();
    
    prevsum=prev_sem*(c_sem-1);
@@ -118,7 +142,13 @@ public class Main {
         LinkedHashSet<Float> targets = new LinkedHashSet<Float>() {{
             add(p_sgpa);
         }};
-   
+        
+        
+      PrintStream print_Stream = new PrintStream("Plan.txt");
+      System.setOut(print_Stream);
+
+        
+        
         System.out.println("## THE DEVISED PLANS");
         for (Float target: targets) {
             Combinations combinations = new Combinations(numbers, target, true);
@@ -168,6 +198,17 @@ public class Main {
                 System.out.println(solution);
             }
         }*/
+        PrintStream console_Stream = new PrintStream(new FileOutputStream(FileDescriptor.out));
+        System.setOut(console_Stream);
+
+        File my_Obj = new File("Plan.txt");
+      Scanner my_Reader = new Scanner(my_Obj);
+      while (my_Reader.hasNextLine()) {
+        String data = my_Reader.nextLine();
+        System.out.println(data);
+      }
+      my_Reader.close();
+
     }
 
     }
