@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.LinkedHashMap;
 
-class StudentMarksContainer {
+class StudentMarksContainer extends RuntimeException {
     Scanner s = new Scanner(System.in);
     Integer semester;
     Integer numOfSub;
-    //Integer tests;              //No. of the tests the student has taken in CIE
     Float sgpa;
     public LinkedHashMap<String, Integer> subjects = new LinkedHashMap<String, Integer>();
     public ArrayList<Float> CIEMarks = new ArrayList<Float>();
     public ArrayList <Float> SEEMarks = new ArrayList<Float>();
-    //public ArrayList <Float> AAT = new ArrayList<Float>();
     public ArrayList <Float> finalMarks = new ArrayList<Float>();
     public ArrayList<Integer> gradePoints = new ArrayList<Integer>();
     public ArrayList<Character> grades = new ArrayList<Character>();
+
+    StudentMarksContainer(String msg){
+        super(msg);
+    }
+
 
     StudentMarksContainer(Integer n){
         this.semester = n;
@@ -59,29 +62,29 @@ class StudentMarksContainer {
         }
     }
     void readCIE(){
-        //if(Main.CHOICE_CIE.toLowerCase().equals("no")) tests = 1;
-        //else tests=3;
+        Float marks = 0.0f;
         for(String subject : subjects.keySet()){
             System.out.println("ENTER THE  CIE MARKS FOR SUBJECT " + subject+":");
             for(int j=0;j<1;j++)
-                CIEMarks.add(s.nextFloat());
+                marks = s.nextFloat();
+            if (marks > 50 || marks < 0) {
+                throw new StudentMarksContainer("THE ENTERED MARKS RANGE FOR CIE HAS EXCEEDED. PLEASE ENTER VALUES FROM 0 TO 50.");
+            }
+
+            CIEMarks.add(marks);
         }
     }
     void readSEE(){
+        float marks = 0.0f;
         System.out.println("ENTER SEE MARKS BELOW:");
         for(String subject : subjects.keySet()){
             System.out.println("ENTER THE  SEE MARKS FOR SUBJECT "+subject+":" );
-            SEEMarks.add(s.nextFloat());
+            marks = s.nextFloat();
+            if (marks > 100 || marks < 0) {
+                throw new StudentMarksContainer("THE ENTERED MARKS RANGE FOR CIE HAS EXCEEDED. PLEASE ENTER VALUES FROM 0 TO 100.");
+            }
+            SEEMarks.add(marks);
         }
     }
 
-    /*
-    void readAAT(){
-        System.out.println("ENTER AAT MARKS FOR EACH SUBJECT BELOW:");
-        for(String subject : subjects.keySet()){
-            System.out.println("ENTER THE AAT MARKS FOR SUBJECT "+subject+":" );
-            SEEMarks.add(s.nextFloat());
-        }
-    }
-    */
 }

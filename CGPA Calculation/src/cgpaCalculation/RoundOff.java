@@ -1,5 +1,5 @@
 package cgpaCalculation;
-public class roundoff{
+public class RoundOff {
    public static float round(float x){
    if((x < 5.5f)&&(x >= 5.0f)){return 5.0f;}
    else if((x < 6.0f)&&(x >= 5.5f)){return 5.5f;}
