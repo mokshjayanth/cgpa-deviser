@@ -51,6 +51,7 @@ public class Main {
         DataContainer D = new DataContainer();
         D.initializeData();
         Scanner s = new Scanner(System.in);
+        Scanner scanString = new Scanner(System.in).useDelimiter("\n");
 
         System.out.println("ENTER YOUR NAME:");
         String name=s.nextLine();
@@ -92,7 +93,7 @@ public class Main {
         display(S.SEEMarks, S.numOfSub, 1, S, 60);
         System.out.println("SEMESTER END GRADE POINT AVERAGE (SGPA): "+ S.sgpa);
 
-
+    // --------***
         
         PrintStream consoleStream = new PrintStream(new FileOutputStream(FileDescriptor.out));
         System.setOut(consoleStream);
@@ -105,9 +106,35 @@ public class Main {
       }
       myReader.close();
 
-/*RECOMMENDATIONS*/
+        String choice;
 
-        System.out.println("-----S.G.P.A RECOMMENDATIONS-----\n");
+        do {
+            System.out.println("PROCEED WITH THE C.G.P.A SCORING PLANS FOR FURTHER SEMESTERS ? [Yes/No]");
+            choice = s.next().toLowerCase();
+            if(choice.equals("no")){
+                System.out.println("THANK YOU. HAVE A GREAT DAY!!");
+                System.exit(0);
+            }
+            if(choice.equals("yes")) {
+
+                System.out.print("\nLOADING C.G.P.A DEVISER ");
+                for (int i =0; i<=5; i++){
+                    System.out.print(".");
+                    try {
+                        Thread.sleep(5*60*2);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            else System.out.println("PLEASE ENTER CORRECT RESPONSE :(");
+        }while(!choice.equals("yes"));
+
+
+
+        /*RECOMMENDATIONS*/
+
+        System.out.println("\n-----S.G.P.A RECOMMENDATIONS-----\n");
         System.out.println("------YOU JUST HAVE TO ENTER YOUR PREVIOUS SEMESTER C.G.P.A AND YOUR TARGET C.G.P.A. THE PROGRAM RECOMMENDS SEVERAL PLANS TO ACHIEVE YOUR TARGET C.G.P.A.------\n ");
         Scanner in = new Scanner(System.in);
         RoundOff r = new RoundOff();
@@ -121,9 +148,7 @@ public class Main {
         prev_sem = in.nextFloat();
         prev_sem = r.round(prev_sem);
         if (prev_sem == 0.0f) System.exit(0);
-        //System.out.println("SEMESTER "+(semester-1)+" C.G.P.A : "+prev_sem);
         c_sgpa = r.round(S.sgpa);
-        System.out.println("SEMESTER " + (semester) + " C.G.P.A : " + c_sgpa);
         System.out.println("ENTER YOUR TARGET C.G.P.A : ");
         t_sgpa = in.nextFloat();
 
@@ -142,8 +167,14 @@ public class Main {
         PrintStream print_Stream = new PrintStream("Plan.txt");
         System.setOut(print_Stream);
 
+        System.out.println("\nName : "+name);
+        System.out.println("USN : "+usn);
+        System.out.println("Semester :"+ semester);
+        System.out.println("S.G.P.A : "+ S.sgpa);
+        System.out.println("Target : "+ t_sgpa);
 
-        System.out.println("---- THE DEVISED PLANS ----");
+
+        System.out.println("\n---- THE DEVISED PLANS ----");
         for (Float target : targets) {
             Combinations combinations = new Combinations(numbers, target, true);
             combinations.calculateCombinations();
@@ -161,7 +192,6 @@ public class Main {
                         x++;
                     } else {
                         String word = new String();
-                        //for(int i=0;i<charList.size();i=i+3){
                         for (int j = x; j < x + 3; j++) {
                             word = word + solution.charAt(j);
                         }
@@ -178,7 +208,7 @@ public class Main {
                     System.out.println("\nPLAN " + (++count) + " -> ");
                     int sem = c_sem;
                     for (int pos = 0; pos < arr_new.size(); pos++) {
-                        System.out.print("SEMESTER " + (++sem) + ": " + arr_new.get(pos) + "\n");
+                        System.out.print("SEMESTER " + (++sem) + ">= " + arr_new.get(pos) + "\n");
                     }
                 } else if ((arr_new.size() == 0) || (arr_new.size() > l_sem)) {
                     flag = 0;

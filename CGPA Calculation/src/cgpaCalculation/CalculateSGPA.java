@@ -68,6 +68,10 @@ public class CalculateSGPA {
         for(String subject : S.subjects.keySet()){
             credit = S.subjects.get(subject);
             product = (credit*S.gradePoints.get(i));
+            if(product==0){
+                sgpa=0.0F;
+                return sgpa;
+            }
             sum = sum + product;
             totalCredits = totalCredits + credit;
             i++;

@@ -12,23 +12,13 @@ import java.io.*;
         private boolean hasNext;
         private Set<String> combinations;
 
-        /**
-         * Constructor.
-         *
-         * @param numbers Numbers that can be used to calculate the sum.
-         * @param target  Target value for sum.
-         */
+
         
         public Combinations(ArrayList<Float> numbers, Float target) {
             this(numbers, target, true);
         }
 
-        /**
-         * Constructor.
-         *
-         * @param numbers Numbers that can be used to calculate the sum.
-         * @param target  Target value for sum.
-         */
+
         public Combinations(ArrayList<Float> numbers, Float target, boolean allowRepetitions) {
             this.allowRepetitions = allowRepetitions;
             if (this.allowRepetitions) {
@@ -51,11 +41,7 @@ import java.io.*;
                 this.hasNext = false;
         }
 
-        /**
-         * Calculate and return the sum of the current combination.
-         *
-         * @return The sum.
-         */
+
         private Float calculateSum() {
             this.sum = 0.0f;
             for (int i = 0; i < repetitions.length; ++i) {
@@ -64,9 +50,7 @@ import java.io.*;
             return this.sum;
         }
 
-        /**
-         * Redistribute picks when only one of each number is allowed in the sum.
-         */
+
         private void redistribute() {
             for (int i = 1; i < this.repetitions.length; ++i) {
                 if (this.repetitions[i - 1] > 1) {
@@ -78,11 +62,7 @@ import java.io.*;
                 this.repetitions[this.repetitions.length - 1] = 0;
         }
 
-        /**
-         * Get the sum of the next combination. When 0 is returned, there's no other combinations to check.
-         *
-         * @return The sum.
-         */
+
         private Float next() {
             if (this.hasNext && this.repetitions.length > 0) {
                 this.repetitions[0] += 1;
@@ -108,9 +88,7 @@ import java.io.*;
             return this.sum;
         }
 
-        /**
-         * Calculate all combinations whose sum equals target.
-         */
+
         public void calculateCombinations() {
             while (this.hasNext) {
                 if (this.next().compareTo(target) == 0)
@@ -118,11 +96,6 @@ import java.io.*;
             }
         }
 
-        /**
-         * Return all combinations whose sum equals target.
-         *
-         * @return Combinations as a set of strings.
-         */
         public Set<String> getCombinations() {
             return this.combinations;
         }
