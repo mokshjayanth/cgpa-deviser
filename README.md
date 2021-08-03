@@ -32,7 +32,7 @@ So based on the student's **Target C.G.P.A** several scoring plans will be devis
 
 The Appication's functionality is classified into two parts:
 1. The application calculates S.G.P.A for the Student's current semester and outputs the Final SEE (Semester-End Examination) and  CIE (Continuous Internal Evaluation) marks into a file in a proper tabulated manner.
-2. Based on the **Target C.G.P.A** entered by the student, the application formulates several possible plans to achieve the *Target C.G.P.A* of the student. Then the application prints the plans into a file for future references.
+2. Based on the **Target C.G.P.A** entered by the student, the application formulates several possible plans to achieve the *Target C.G.P.A* of the student. Then the application outputs the plans into a file for future references.
 
 
 
